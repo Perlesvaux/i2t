@@ -49,6 +49,7 @@ app.post("/itt", upload.single("sendfile"), MWLogger, async (req, res) => {
     return res.json({output: "Invalid type"})
   }
 
+  
   const worker = await createWorker('eng');
   const ret = await worker.recognize(`uploads/${req.file.filename}`);
   console.log(ret.data.text);
