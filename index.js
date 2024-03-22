@@ -56,6 +56,8 @@ app.post("/itt", upload.single("sendfile"), MWLogger, async (req, res) => {
   console.log(ret.data.text);
   await worker.terminate();
 
+  await fs.promises.unlink(`uploads/${req.file.filename}`)
+
   res.json({output:ret.data.text})
 
   // await recognizeText(`uploads/${req.file.filename}`)
